@@ -15,6 +15,12 @@ public class Calendar {
 		System.out.println("--------------------");
 		Calendar cal = new Calendar();
 		int MaxDay = cal.getMaxDaysOfMonth(month);
+		// 4 o , 4 o/100 x, 4 o/100 x/400 o
+		if((year%4==0 && year%100!=0) || (year%4==0 && year%100==0 && year%400==0)) {
+			if(month == 2) {
+				MaxDay = 29;
+			}
+		}
 		for(int i=1; i<=MaxDay; i++) {
 			System.out.printf("%3d", i);
 			if(i%7 ==0) {
