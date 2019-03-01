@@ -19,16 +19,19 @@ public class Calendar {
 		}
 	}
 	
-	public void printCalendar(int year, int month) {
+	public void printCalendar(int year, int month, int weekday) {
 		System.out.printf("     <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR ST");
 		System.out.println("--------------------");
 		
 		int MaxDay = getMaxDaysOfMonth(year, month);
 		
+		for(int i=0; i<weekday; i++) {
+			System.out.print("   ");
+		}
 		for(int i=1; i<=MaxDay; i++) {
 			System.out.printf("%3d", i);
-			if(i%7 ==0) {
+			if((i+weekday)%7 ==0) {
 				System.out.println();
 			}
 		}
