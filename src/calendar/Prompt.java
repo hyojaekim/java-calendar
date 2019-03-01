@@ -7,24 +7,30 @@ public class Prompt {
 	public void runPrompt() {
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-
+		
+		int month = -1;
+		int year = -1;
+		
 		while(true){
 			System.out.println("년도를 입력하세요.");
 			System.out.print("YEAR> ");
-			int year = scanner.nextInt();
+			year = scanner.nextInt();
+			
 			System.out.println("월을 입력하세요.");
 			System.out.print("MONTH> ");
-			int month = scanner.nextInt();
-			if(month < 1) {
-				System.out.println("end!!");
+			month = scanner.nextInt();
+			
+			if(month == -1) {
 				break;
-			}else if(month > 12) {
-				continue;
-			}else {
-				cal.printCalendar(year, month);
 			}
+			if(month > 12) {
+				continue;
+			}
+			
+			cal.printCalendar(year, month);
 		}
 		
+		System.out.println("Bye~");
 		scanner.close();
 	}
 

@@ -1,26 +1,31 @@
 package calendar;
 
-import java.util.Scanner;
-
 public class Calendar {
-	private static final int[] Max_days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private static final int[] LEAP_MAX_DAYS = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
-	public static int getMaxDaysOfMonth(int month) {
-		return Max_days[month-1];
+	public boolean isLeapYear(int year) {
+		if(year%4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public int getMaxDaysOfMonth(int year, int month) {
+		if(isLeapYear(year)) {
+			return LEAP_MAX_DAYS[month-1];
+		}else {
+			return MAX_DAYS[month-1];
+		}
 	}
 	
 	public void printCalendar(int year, int month) {
 		System.out.printf("     <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR ST");
 		System.out.println("--------------------");
-		Calendar cal = new Calendar();
-		int MaxDay = cal.getMaxDaysOfMonth(month);
-		// 4 o , 4 o/100 x, 4 o/100 x/400 o
-		if((year%4==0 && year%100!=0) || (year%4==0 && year%100==0 && year%400==0)) {
-			if(month == 2) {
-				MaxDay = 29;
-			}
-		}
+		
+		int MaxDay = getMaxDaysOfMonth(year, month);
+		
 		for(int i=1; i<=MaxDay; i++) {
 			System.out.printf("%3d", i);
 			if(i%7 ==0) {
@@ -29,4 +34,5 @@ public class Calendar {
 		}
 		System.out.println();
 	}
+
 }
