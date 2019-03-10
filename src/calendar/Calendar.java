@@ -1,7 +1,5 @@
 package calendar;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,7 +8,7 @@ public class Calendar {
 	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	private static final int[] LEAP_MAX_DAYS = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
-	private HashMap<Date, String> map = new HashMap<Date, String>();
+	private HashMap<Date, planItem> map = new HashMap<Date, planItem>();
 	
 //	public Calendar() {
 //		map = new HashMap<Date, String>();
@@ -68,6 +66,7 @@ public class Calendar {
 		
 		return weekday;
 	}
+	
 	void printCal(Scanner s, Calendar c) {
 		int month = 1;
 		int year = 2017;
@@ -86,23 +85,12 @@ public class Calendar {
 	}
 	
 	public void setRegister(String strDate, String plan) {
-		try {
-			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
-			
-			map.put(date, plan);
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("오류가 발생하였습니다.");
-		}
+		planItem p = new planItem(strDate, plan);
+		map.put(p.getDate(), p);
 	}
 
-	public void getPlan(String strDate) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
-		
-		System.out.println(map.get(date));
+	public planItem getPlan(String strDate){
+		Date date = planItem.getDateFromPlan(strDate);
+		return map.get(date);
 	}
-	
-	
 }

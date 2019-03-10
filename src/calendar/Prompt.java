@@ -53,8 +53,13 @@ public class Prompt {
 	private void cmdSearch(Scanner s, Calendar c) throws ParseException {
 		System.out.println("날짜를 입력하세요(yyyy-mm-dd) : ");
 		String strDate = s.next();
-		
-		c.getPlan(strDate);
+		planItem plan;
+		plan = c.getPlan(strDate);
+		if(plan != null) {
+			System.out.println(plan.Detail);
+		}else {
+			System.out.println("일정이 없습니다.");
+		}
 	}
 
 	private void cmdRegister(Scanner s, Calendar c) {
