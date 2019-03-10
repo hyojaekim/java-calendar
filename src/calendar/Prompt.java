@@ -39,6 +39,7 @@ public class Prompt {
 				result = false;
 				break;
 			}
+			
 		}
 		System.out.println("exit!!");
 		scanner.close();

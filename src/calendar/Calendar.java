@@ -36,7 +36,6 @@ public class Calendar {
 		System.out.printf("    <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR ST");
 		System.out.println("----------------------");
-		
 		int MaxDay = getMaxDaysOfMonth(year, month);
 		
 		int weekday = getWeekDay(year, month);
