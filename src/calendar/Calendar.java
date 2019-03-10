@@ -1,9 +1,20 @@
 package calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Scanner;
+
 public class Calendar {
 	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	private static final int[] LEAP_MAX_DAYS = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+	
+	private HashMap<Date, String> map = new HashMap<Date, String>();
+	
+//	public Calendar() {
+//		map = new HashMap<Date, String>();
+//	} 생략
 	public boolean isLeapYear(int year) {
 		if(year%4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
 			return true;
@@ -58,4 +69,41 @@ public class Calendar {
 		
 		return weekday;
 	}
+	void printCal(Scanner s, Calendar c) {
+		int month = 1;
+		int year = 2017;
+			
+		System.out.print("YEAR> ");
+		year = s.nextInt();
+			
+		System.out.print("MONTH> ");
+		month = s.nextInt();
+			
+		if(month < 1 || month > 12) {
+			System.out.println("잘못된 입력입니다.");
+		}else {
+			c.printCalendar(year, month);
+		}
+	}
+	
+	public void setRegister(String strDate, String plan) {
+		try {
+			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+			
+			map.put(date, plan);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("오류가 발생하였습니다.");
+		}
+	}
+
+	public void getPlan(String strDate) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		
+		System.out.println(map.get(date));
+	}
+	
+	
 }
