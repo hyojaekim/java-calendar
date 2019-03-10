@@ -26,7 +26,6 @@ public class Prompt {
 			
 			cal.printCalendar(year, month);
 		}
-		
 		System.out.println("exit!!");
 		scanner.close();
 	}
